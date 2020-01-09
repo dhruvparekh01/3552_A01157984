@@ -11,15 +11,14 @@ def divide(a, b):
         return a/b
     except ZeroDivisionError:
         print('Cannot divide by zero')
-    finally:
-        exit(0)
+        exit(0)  # Exit in case of exception
 
 
 def subtract(a, b):
     return a-b
 
 
-if __name__ == '__main__':
+def main():
     try:
         n1 = int(input('Enter first number: '))
         n2 = int(input('Enter second number: '))
@@ -28,9 +27,7 @@ if __name__ == '__main__':
 
     except ValueError:
         print('Invalid value')
-
-    finally:
-        exit(0)
+        exit(0)  # Exit in case of exception
 
     if temp == 1:
         print(Sum(n1, n2))
@@ -42,5 +39,9 @@ if __name__ == '__main__':
         print(divide(n1, n2))
     else:
         print('Invalid number entered')
+
+
+if __name__ == '__main__':
+    main()
 
 
