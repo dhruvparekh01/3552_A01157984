@@ -26,23 +26,29 @@ class Controller:
             self.asteroids.append(Asteroid(circum, pos, vel))
 
     def simulate(self, seconds):
-        start = time.time()
-        time.sleep(math.ceil(start) - start)  # pause the thread until time is nearly in an integer value
-        start = time.time()
-        print('Simulation start time:', start)
+        """
+        Simulate movement of all asteroids.
+        :param seconds:
+        :return:
+        """
 
-        count = 1
-        for asteroid in self.asteroids:
-            print('Asteroid', count, 'Moved! Old pos:', asteroid.position, '-> New pos:', end=' ')
+        for i in range(seconds):
+            start = time.time()
+            time.sleep(math.ceil(start) - start)  # pause the thread until time is nearly in an integer value
+            start = time.time()
+            print('Simulation start time:', start)
 
-            for i in range(seconds):  # will be executed same number of times as value of seconds
-                asteroid.position.add(asteroid.vel)  # add velocity to position every time executed
+            count = 1
+            for asteroid in self.asteroids:
+                print('Asteroid', count, 'Moved! Old pos:', asteroid.position, '-> New pos:', end=' ')
 
-            print(asteroid.position)
+                asteroid.position.add(asteroid.vel)
 
-            print('Asteroid ', count, end='')
-            print(asteroid)
-            count += 1
+                print(asteroid.position)
+
+                print('Asteroid ', count, end='')
+                print(asteroid)
+                count += 1
 
     @staticmethod
     def init_pos():
