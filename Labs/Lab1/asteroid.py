@@ -1,5 +1,11 @@
 class Asteroid:
     def __init__(self, circum, pos, vel):
+        """
+        Initialize asteroid
+        :param circum -> float: circumference of asteroid
+        :param pos -> Vector: Initial position of the asteroid
+        :param vel -> Vector: Initial velocity of the asteroid
+        """
         self.circumference = circum
         self.pos = pos
         self.vel = vel
