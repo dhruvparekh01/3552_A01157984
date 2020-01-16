@@ -10,4 +10,9 @@ class Vector:
         self.z += v2.z
 
     def __str__(self):
-        return '(', self.x, ',', self.y, ',', self.z, ')'
+        x = str(self.x)
+        y = str(self.y)
+        z = str(self.z)
+        s = '(' + x + ', ' + y + ', ' + z + ')'
+
+        return s

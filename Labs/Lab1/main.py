@@ -2,7 +2,7 @@ from Labs.Lab1.controller import Controller
 
 
 def main():
-    controller = Controller()
+    controller = Controller()  # create a Controller object
     controller.simulate(5)
 
 
