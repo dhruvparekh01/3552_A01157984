@@ -6,6 +6,7 @@
         <list>
           <option value="Vector" />
           <option value="float" />
+          <option value="Labs.Lab2.dvd.JournalItem" />
         </list>
       </option>
     </inspection_tool>
