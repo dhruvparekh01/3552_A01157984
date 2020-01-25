@@ -1,92 +1,123 @@
 from Labs.Lab2.book import Book
+from Labs.Lab2.dvd import Dvd
+from Labs.Lab2.journal import Journal
+from Labs.Lab2.lib_item_generator import LibraryItemGenerator
 
 
 class Catalogue:
     def __init__(self):
         """
-                Intialize the library with a list of books.
-                :param book_list: a sequence of book objects.
-                """
-        self.items_list = self.generate_test_books()
+        Initialize the catalogue with a list of books.
+        """
+        self.items_list = LibraryItemGenerator.generate_test_items()
 
-    def add_book(self):
+    def retrieve_item_by_call_number(self, call_num):
         """
-        Add a brand new book to the library with a unique call number.
+        A private method that encapsulates the retrieval of an book with
+        the given call number from the catalogue.
+        :param call_num: a string
+        :return: catalogue_item object if found, None otherwise
         """
-        call_number = input("Enter Call Number: ")
-        title = input("Enter title: ")
+        found_item = None
+        for item in self.items_list:
+            if item.call_num == call_num:
+                found_item = item
+                break
+        return found_item
+
+    def add_item(self):
+        """
+        Add a brand new item to the catalogue with a unique call number.
+        """
+        item_type = int(input('1) Book\n2) Journal\n3) DVD\n'))
+
+        call_num = input("Enter Call Number: \n")
         num_copies = int(input("Enter number of copies "
-                               "(positive number): "))
-        book_data = (call_number, title, num_copies)
-        author = input("Enter Author Name: ")
-        new_book = Book(book_data[0], book_data[1], book_data[2], author)
+                               "(positive number): \n"))
 
-        found_book = self._retrieve_book_by_call_number(
-            new_book.call_number)
-        if found_book:
-            print(f"Could not add book with call number "
-                  f"{new_book.call_number}. It already exists. ")
+        if item_type == 1:
+            title = input("Enter title: ")
+            author = input("Enter Author Name: ")
+            new_item = Book(call_num, title, num_copies, author)
+
+        elif item_type == 2:
+            name = input("Enter name: ")
+            issue = input("Enter issue number: ")
+            pub = input("Enter publisher name: ")
+            new_item = Journal(call_num, name, issue, pub, num_copies)
+
+        elif item_type == 3:
+            title = input("Enter title: ")
+            release = input("Enter release date: ")
+            reg_code = input("Enter registration code: ")
+            new_item = Dvd(call_num, release, reg_code, num_copies, title)
+
         else:
-            self.items_list.append(new_book)
+            print("Invalid input")
+            return
+
+        found_item = self.retrieve_item_by_call_number(call_num)
+
+        if found_item:
+            print(f"Could not add item with call number "
+                  f"{new_item.call_num}. It already exists. ")
+        else:
+            self.items_list.append(new_item)
             print("book added successfully! book details:")
-            print(new_book)
+            print(new_item)
 
-    def remove_book(self, call_number):
+    def remove_item(self, call_num):
         """
-        Remove an existing book from the library
-        :param call_number: a string
+        Remove an existing item from the catalogue
+        :param call_num: a string
         :precondition call_number: a unique identifier
         """
-        found_book = self._retrieve_book_by_call_number(call_number)
-        if found_book:
-            self.items_list.remove(found_book)
-            print(f"Successfully removed {found_book.get_title()} with "
-                  f"call number: {call_number}")
+        found_item = self.retrieve_item_by_call_number(call_num)
+        if found_item:
+            self.items_list.remove(found_item)
+            print(f"Successfully removed {found_item.get_title()} with "
+                  f"call number: {call_num}")
         else:
-            print(f"book with call number: {call_number} not found.")
+            print(f"book with call number: {call_num} not found.")
 
-    def reduce_book_count(self, call_number):
+    def reduce_item_count(self, call_num):
         """
-        Decrement the book count for an book with the given call number
-        in the library.
-        :param call_number: a string
+        Decrement the item count for an item with the given call number
+        in the catalogue.
+        :param call_num: a string
         :precondition call_number: a unique identifier
-        :return: True if the book was found and count decremented, false
+        :return: True if the item was found and count decremented, false
         otherwise.
         """
-        library_book = self._retrieve_book_by_call_number(call_number)
-        if library_book:
-            library_book.decrement_number_of_copies()
+        library_item = self.retrieve_item_by_call_number(call_num)
+        if library_item:
+            library_item.decrement_number_of_copies()
             return True
         else:
             return False
 
-    def increment_book_count(self, call_number):
+    def increment_item_count(self, call_num):
         """
-        Increment the book count for an book with the given call number
-        in the library.
-        :param call_number: a string
+        Increment the item count for an book with the given call number
+        in the catalogue.
+        :param call_num: a string
         :precondition call_number: a unique identifier
-        :return: True if the book was found and count incremented, false
+        :return: True if the item was found and count incremented, false
         otherwise.
         """
-        library_book = self._retrieve_book_by_call_number(call_number)
-        if library_book:
-            library_book.increment_number_of_copies()
+        library_item = self.retrieve_item_by_call_number(call_num)
+        if library_item:
+            library_item.increment_number_of_copies()
             return True
         else:
             return False
 
-    def generate_test_books():
+    def display_available_items(self):
         """
-        Return a list of books with dummy data.
-        :return: a list
+        Display all the items in the catalogue.
         """
-        book_list = [
-            Book("100.200.300", "Harry Potter 1", 2, "J K Rowling"),
-            Book("999.224.854", "Harry Potter 2", 5, "J K Rowling"),
-            Book("631.495.302", "Harry Potter 3", 4, "J K Rowling"),
-            Book("123.02.204", "The Cat in the Hat", 1, "Dr. Seuss")
-        ]
-        return book_list
+        print("Item List")
+        print("--------------", end="\n\n")
+        for library_book in self.items_list:
+            print(library_book)
 
