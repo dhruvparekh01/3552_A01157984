@@ -31,7 +31,7 @@ class Controller:
         eating = input('Enter eating out budget')
         misc = input('Enter miscellaneous budget')
 
-        budgets = AllBudgets(games, clothing, eating, misc)
+        # budgets = AllBudgets(games, clothing, eating, misc)
         new_user = User(name, age, acc_number,bank_name, bal, budgets)
         self.users.append(new_user)
 
