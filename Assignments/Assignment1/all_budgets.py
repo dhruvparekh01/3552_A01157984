@@ -41,7 +41,13 @@ class AllBudgets:
             return
 
         time = datetime.datetime.now()
-        amt = int(input('Enter the amount\n'))
+
+        try:
+            amt = float(input('Enter the amount\n'))
+        except ValueError:
+            print('Please enter a valid number')
+            self.add_transaction(user)
+
         src = input('Enter the source of purchase\n')
         choice = input('Category:\n1) Games and Entertainment\t2) Clothing and Accessories\t3) Eating Out'
                        '\t4) Miscellaneous\n')

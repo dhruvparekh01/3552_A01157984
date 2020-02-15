@@ -22,18 +22,17 @@ class Controller:
         Add a new user to the system by a series of prompts
         :raises InvalidChoiceException if user inputs invalid character(s)
         """
-        name = input('Enter the user name: ')
-        age = int(input('Enter the user age: '))
-        acc_number = input('Enter the account number: ')
-        bank_name = input('Enter the bank name: ')
-
         try:
+            name = input('Enter the user name: ')
+            age = int(input('Enter the user age: '))
+            acc_number = input('Enter the account number: ')
+            bank_name = input('Enter the bank name: ')
             bal = float(input('Enter the current bank balance: '))
             games = float(input('Enter games and entertainment budget: '))
             clothing = float(input('Enter clothing and accessories budget: '))
             eating = float(input('Enter eating out budget: '))
             misc = float(input('Enter miscellaneous budget: '))
-        except TypeError:
+        except ValueError:
             print('Invalid number entered. Please enter all details again')
             return self.add_user()
 
