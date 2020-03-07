@@ -51,7 +51,7 @@ class Catalogue:
         found_item = self.retrieve_item_by_call_number(call_num)
         if found_item:
             self.items_list.remove(found_item)
-            print(f"Successfully removed {found_item.title()} with "
+            print(f"Successfully removed {found_item.title} with "
                   f"call number: {call_num}")
         else:
             print(f"book with call number: {call_num} not found.")

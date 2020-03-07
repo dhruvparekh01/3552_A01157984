@@ -31,7 +31,7 @@ class Journal(CatalogueItem):
     def pub(self): return self._pub
 
     def __str__(self):
-        return f"---- Journal: {self.title()} ----\n" \
+        return f"---- Journal: {self.title} ----\n" \
                f"Call Number: {self.call_num}\n" \
                f"Number of Copies: {self.num_copies}\n" \
                f"Issue No: {self._issue_no}\n" \

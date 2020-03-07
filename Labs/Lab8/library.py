@@ -21,6 +21,9 @@ class Library:
         :precondition call_number: a unique identifier
         """
         library_item = self.catalogue.retrieve_item_by_call_number(call_num)
+        if library_item is None:
+            print('Invalid call number')
+            return
         if library_item.check_availability():
             status = self.catalogue.reduce_item_count(call_num)
             if status:
@@ -111,7 +114,7 @@ class Library:
         :param title: a string
         :return: a list of titles.
         """
-        title_list = [item.get_title() for item in self.catalogue.items_list]
+        title_list = [item.title for item in self.catalogue.items_list]
         results = difflib.get_close_matches(title, title_list, cutoff=0.5)
         return results
 

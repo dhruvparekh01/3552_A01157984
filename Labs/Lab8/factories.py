@@ -16,7 +16,11 @@ class CatalogueItemFactory(ABC):
         :return a dictionary of arguments which can be used as keyword args
         """
         kwargs = {'call_num': input("Enter Call Number: \n")}
-        num_copies = int(input("Enter number of copies (positive number): \n"))
+        try:
+            num_copies = int(input("Enter number of copies (positive number): \n"))
+        except ValueError:
+            print('Invalid input. Number of copies set to default (1).')
+            num_copies = 1
         name = input("Enter name: ")
         kwargs.update({'num_copies': num_copies})
         kwargs.update({'name': name})
