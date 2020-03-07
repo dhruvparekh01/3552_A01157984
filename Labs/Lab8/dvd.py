@@ -6,6 +6,19 @@ class Dvd(CatalogueItem):
     Initialize Dvd
     """
     def __init__(self, release, reg_code, **kwargs):
+        """
+        :param release: a string to represent release date
+        :param reg_code: an int to represent registration code
+        :param **kwargs: See below
+
+        :keyword Arguments:
+            * *call_num* (```str```)
+            * *title* (```str```)
+            * *num_copies* (```int```)
+
+        :precondition call_num: a unique identifier
+        :precondition num_copies: a positive integer
+        """
         super().__init__(**kwargs)
         self._release = release
         self._reg_code = reg_code

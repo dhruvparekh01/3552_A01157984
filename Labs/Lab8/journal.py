@@ -9,10 +9,15 @@ class Journal(CatalogueItem):
 
     def __init__(self, issue_no, pub, **kwargs):
         """
-        :param call_num: a string
-        :param name: a string
-        :param num_copies: an int
         :param issue_no: an int
+        :param pub: a string
+        :param **kwargs: See below
+
+        :keyword Arguments:
+            * *call_num* (```str```)
+            * *title* (```str```)
+            * *num_copies* (```int```)
+
         :precondition call_num: a unique identifier
         :precondition num_copies: a positive integer
         """

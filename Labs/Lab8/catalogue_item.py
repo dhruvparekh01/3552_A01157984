@@ -8,8 +8,15 @@ class CatalogueItem(abc.ABC):
     def __init__(self, **kwargs):
         """
         Initialize the catalogue item
-        :param num_copies: int
-        :param call_num: String
+        :param **kwargs: See below
+
+        :keyword Arguments:
+            * *call_num* (```str```)
+            * *title* (```str```)
+            * *num_copies* (```int```)
+
+        :precondition call_num: a unique identifier
+        :precondition num_copies: a positive integer
         """
         self.__dict__.update(kwargs)
         self.name = kwargs.get('name')

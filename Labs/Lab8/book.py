@@ -9,10 +9,14 @@ class Book(CatalogueItem):
 
     def __init__(self, author, **kwargs):
         """
-        :param call_num: a string
-        :param title: a string
-        :param num_copies: an int
         :param author: a string
+        :param **kwargs: see below
+
+        :keyword Arguments:
+            * *call_num* (```str```)
+            * *title* (```str```)
+            * *num_copies* (```int```)
+
         :precondition call_num: a unique identifier
         :precondition num_copies: a positive integer
         """
