@@ -26,8 +26,8 @@ class CatalogueItem(abc.ABC):
         else:
             return False
 
-    def get_title(self):
-        return self.name
+    @property
+    def title(self): return self.name
 
     def decrement_number_of_copies(self):
         self.num_copies -= 1

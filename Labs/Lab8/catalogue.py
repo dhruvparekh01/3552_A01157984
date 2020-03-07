@@ -1,7 +1,4 @@
-from Labs.Lab8.book import Book
-from Labs.Lab8.dvd import Dvd
-from Labs.Lab8.factories import JournalFactory
-from Labs.Lab8.journal import Journal
+from Labs.Lab8.factories import JournalFactory, BookFactory, DvdFactory
 from Labs.Lab8.lib_item_generator import LibraryItemGenerator
 
 
@@ -32,39 +29,18 @@ class Catalogue:
         """
         item_type = int(input('1) Book\n2) Journal\n3) DVD\n'))
 
-        new_item = JournalFactory().create_catalogue_item()
+        new_item = None
+        if item_type == 1:
+            new_item = BookFactory().create_catalogue_item()
+        elif item_type == 2:
+            new_item = JournalFactory().create_catalogue_item()
+        elif item_type == 3:
+            new_item = DvdFactory().create_catalogue_item()
+        else:
+            print('Invalid choice')
+            return
+
         self.items_list.append(new_item)
-
-        # if item_type == 1:
-        #     title = input("Enter title: ")
-        #     author = input("Enter Author Name: ")
-        #     new_item = Book(call_num, title, num_copies, author)
-        #
-        # elif item_type == 2:
-        #     name = input("Enter name: ")
-        #     issue = input("Enter issue number: ")
-        #     pub = input("Enter publisher name: ")
-        #     new_item = Journal(call_num, name, issue, pub, num_copies)
-        #
-        # elif item_type == 3:
-        #     title = input("Enter title: ")
-        #     release = input("Enter release date: ")
-        #     reg_code = input("Enter registration code: ")
-        #     new_item = Dvd(call_num, release, reg_code, num_copies, title)
-        #
-        # else:
-        #     print("Invalid input")
-        #     return
-
-        # found_item = self.retrieve_item_by_call_number(call_num)
-        #
-        # if found_item:
-        #     print(f"Could not add item with call number "
-        #           f"{new_item.call_num}. It already exists. ")
-        # else:
-        #     self.items_list.append(new_item)
-        #     print("book added successfully! book details:")
-        #     print(new_item)
 
     def remove_item(self, call_num):
         """

@@ -19,11 +19,11 @@ class Book(CatalogueItem):
         super().__init__(**kwargs)
         self._author = author
 
-    def get_author(self):
-        return self._author
+    @property
+    def author(self): return self._author
 
     def __str__(self):
-        return f"---- Book: {self.get_title()} ----\n" \
+        return f"---- Book: {self.title()} ----\n" \
                f"Call Number: {self.call_num}\n" \
                f"Number of Copies: {self.num_copies}\n" \
                f"Author: {self._author}"
