@@ -111,11 +111,8 @@ class Library:
         :param title: a string
         :return: a list of titles.
         """
-        title_list = []
-        for item in self.catalogue.items_list:
-            title_list.append(item.get_title())
-        results = difflib.get_close_matches(title, title_list,
-                                            cutoff=0.5)
+        title_list = [item.get_title() for item in self.catalogue.items_list]
+        results = difflib.get_close_matches(title, title_list, cutoff=0.5)
         return results
 
 

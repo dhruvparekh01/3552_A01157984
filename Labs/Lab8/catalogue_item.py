@@ -21,10 +21,7 @@ class CatalogueItem(abc.ABC):
         Returns True if the book is available and False otherwise
         :return: A Boolean
         """
-        if self.num_copies > 0:
-            return True
-        else:
-            return False
+        return self.num_copies > 0
 
     @property
     def title(self): return self.name

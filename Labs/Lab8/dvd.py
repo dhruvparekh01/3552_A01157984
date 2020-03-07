@@ -20,5 +20,5 @@ class Dvd(CatalogueItem):
         return f"---- DVD: {self.title()}----\n" \
                f"Call Number: {self.call_num}\n" \
                f"Number of Copies: {self.num_copies}\n" \
-               f"Release Date: {self._release}\n" \
-               f"Registration Code: {self._reg_code}"
+               f"Release Date: {self.release}\n" \
+               f"Registration Code: {self.reg_code}"
